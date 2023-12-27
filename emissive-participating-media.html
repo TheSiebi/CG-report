@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en" class="fontawesome-i2svg-active fontawesome-i2svg-complete">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>ACG23 Report</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="./resources/offcanvas.css" rel="stylesheet">
+    <link href="./resources/twentytwenty.css" rel="stylesheet" type="text/css" />
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+        });
+    </script>
+    <style>
+        .image-container {
+            display: flex; /* Use "inline-block" if you prefer another layout */
+        }
+
+            .image-container div {
+                margin-right: 20px; /* Adjust margin as needed to create space between images */
+            }
+    </style>
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+</head>
+
+<body class="sb-nav-fixed" data-new-gr-c-s-check-loaded="8.909.0" data-gr-ext-installed="">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="index.html">ACG 2023</a>
+
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
+            <svg class="svg-inline--fa fa-bars" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars"
+                 role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                <path fill="currentColor"
+                      d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z">
+                </path>
+            </svg><!-- <i class="fas fa-bars"></i> Font Awesome fontawesome.com -->
+        </button>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Emissive Participating Media</div>
+                        <a class="nav-link" href="#implementation">Implementation</a>
+                        <a class="nav-link" href="#validation">Validation</a>
+                        <a class="nav-link" href="index.html">
+                            <div class="sb-nav-link-icon">
+                                <svg class="svg-inline--fa fa-circle-arrow-left"
+                                     aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-arrow-left"
+                                     role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                                     data-fa-i2svg="">
+                                    <path fill="currentColor"
+                                          d="M256 0C114.6 0 0 114.6 0 256c0 141.4 114.6 256 256 256s256-114.6 256-256C512 114.6 397.4 0 256 0zM384 288H205.3l49.38 49.38c12.5 12.5 12.5 32.75 0 45.25s-32.75 12.5-45.25 0L105.4 278.6C97.4 270.7 96 260.9 96 256c0-4.883 1.391-14.66 9.398-22.65l103.1-103.1c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L205.3 224H384c17.69 0 32 14.33 32 32S401.7 288 384 288z">
+                                    </path>
+                                </svg><!-- <i class="fas fa-arrow-circle-left"></i> Font Awesome fontawesome.com -->
+                            </div>
+                            Back
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+
+                    <!-- MAIN CONTENT BELOW -->
+                    <h2 id="emissive-participating-media-10pt-">Emissive Participating Media (10pts) </h2>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">Marc Matter</li>
+                    </ol>
+
+                    <h3 id="implementation"> Implementation </h3>
+                    <p><strong>Added files: </strong></p>
+                    <ul>
+                        <li><code>volpath_ems.cpp</code></li>
+                        <li><code>emissivemedium.cpp</code></li>
+                    </ul>
+                    <p>
+                        Emissive participating media are heterogeneous media that additionally emit radiance. <br />
+                        To accomplish that they take a second
+                        <code>.vol</code> file as an xml parameter - a temperature grid. By assuming the media is a black body emitter, I
+                        can transform the temperature to emitted radiance via <a href="https://pbr-book.org/3ed-2018/Light_Sources/Light_Emission#eq:plancks-law">this formula</a>.
+                        To do that, I added a method <code>tempToRadiance()</code> to <code>volumegrid.cpp</code> that converts a temperature to radiance and normalizes the emitted
+                        radiance as describes in PBRv3. <br />
+                        To scale the raw temperature values from the temperature grid, I also added a <code>temp_scale_raw</code> parameter to the xml as well
+                        as a parameter <code>sigma_e</code> that is used to scale the emitted radiance after the temperature has been converted.
+                    </p>
+
+                    <p>
+                        To be able to importance sample the emissive medium, I modified the <code>volumegrid.cpp</code> file to additionally compute
+                        a 3D discrete probability distribution in the same spirit as is done for environment map emitters, just with an additional dimension
+                        as we now compute the distribution on voxels and no longer on pixels. This distribution is computed proportional to the luminance
+                        of the individual voxels and can be sampled by calling the <code>sampleGrid()</code> method, which samples
+                        a voxel by sampling 3 individual 1D distributions: $p(x), p(y \ | \ x)$ and $p(z \ | \ y, x)$. <br />
+                        To access the probability of sampling a voxel, I also added a method <code>pdf()</code>. As this sampling is done in index space,
+                        we need to transform the pdf to local medium coordinate space which is done as follows: $p(x_m, y_m, z_m) = p(x_{ind}, y_{ind}, z_{ind}) * \frac{n_x * n_y * n_z}{e_x * e_y * e_z}$,
+                        where $n_i$ denotes the number of grid cells in the i-th dimension and $e_i$ the extents of the bounding box in the i-th dimension.
+                    </p>
+
+                    <p>
+                        An emissive medium also offers three additional methods compared to a heterogeneous one. The first one is <code>eval()</code> which does the same thing
+                        as the <code>eval()</code> method of any other emitter: It computes the emitted radiance for a point. It is important that we first need
+                        to transform <code>lRec.p</code> to the local medium coordinate system before we can evaluate the emitted radiance at this point. <br />
+                        The second method is <code>sampleEmission()</code> which calls the <code>sampleGrid()</code> method of the temperature grid and populates
+                        the EmitterQueryRecord. Finally, it returns the emitted radiance divided by the probability of sampling the sampled point. Also here it is important
+                        to transform <code>lRec.p</code> from medium space to world space.<br />
+                        The last method is <code>pdf()</code> that returns the probability of of sampling <code>lRec.p</code>. The probability in local medium
+                        coordinates is obtained by transforming <code>lRec.p</code> to medium space and then calling the <code>pdf()</code> method of the temperature grid. But we now need to transform this probability to solid
+                        angle measure before returning it. I do this in two steps:
+                        <ol>
+                            <li>
+                                I divide $pdf_{med}$ by the absolute value of the determinant of the jacobian of <code>medium_to_world_transform.topLeftCorner(3, 3)</code>
+                                to obtain $pdf_{world}$
+                            </li>
+                            <li>
+                                I transform $pdf_{world}$ to solid angle measure in the same way as is done for area emitters. For the cosine term I just use 1, as the
+                                medium emits the same radiance in to all directions.
+                            </li>
+                        </ol>
+                    </p>
+
+                    <p>
+                        Finally, I also added the <code>volpath_ems.cpp</code> integrator, which just does emitter sampling instead of material sampling.
+                        It builds its path by sampling the bsdfs and phase functions but it does not add any contributions from emitters lying on this path (except for direct camera hits). <br />
+                        Instead, it samples a uniformly random light (either a traditional emitter or an emissive medium) at each path vertex and adds its contribution to the radiance accumulator (Light sampling is done similarly as
+                        e.g. in direct_ems). The implementation is pretty similar
+                        to <code>volpath_mats.cpp</code> apart from the difference mentioned above. <br />
+                        Here I also need the <code>intersectTr()</code> method described in the section on heterogeneous media for testing shadowray intersections and obtaining the
+                        the transmittance along the shadowray to attenuate the lights contribution by it. Additionally, the scene now also keeps a list of
+                        all emissive medias to be able to sample from them.
+                    </p>
+
+                    <p>
+                        Emissive media are also attached to a mesh and
+                        the xml syntax for specifying an emissive medium is the same as for a heterogeneous one with three additional parameters:
+                        <code>
+                            <xmp>
+<medium type="emissive">
+    <phase type="henyeygreenstein">
+        <float name="g" value="0.8" />
+    </phase>
+    <color name="sigma_a" value="15 15 15" />
+    <color name="sigma_s" value="5 5 5" />
+    <color name="sigma_e" value="10 10 10" />
+    <float name="temp_scale_raw" value="50" />
+    <string name="density_file" value="./volumes/fire_density.vol" />
+    <string name="temperature_file" value="./volumes/fire_temperature.vol" />
+</medium>
+                            </xmp>
+                        </code>
+                    </p>
+
+                    <h3 id="validation">Validation</h3>
+                    <p>
+                        I validate my implementation by comparing the rendered results for varying parameters and by judging if they look as expected.
+                        I obtained the .vol files by using the <a href="https://github.com/mitsuba-renderer/mitsuba2-vdb-converter">converter</a>
+                        offered by mitsuba to convert vdb files which can for example be obtained from <a href="https://www.openvdb.org/download/">here</a>.
+                        All images were rendered using <code>volpath_mats.cpp</code> unless explicitly stated otherwise.
+                    </p>
+
+
+
+                    <p>
+                        <strong>Emissive Medium</strong><br />
+                        The fire rendered looks realistic and one can also see its influence on the environment (e.g. especially below it). Additionally,
+                        varying the parameters does the expected thing.
+                    </p>
+                    <div class="twentytwenty-container">
+                        <img src="images/emissive-participating-media/cbox_vol_mats_fire_raw50_se100.png" alt="$\sigma_e = 100$" class="img-responsive">
+                        <img src="images/emissive-participating-media/cbox_vol_mats_fire_raw50_se200.png" alt="$\sigma_e = 200$" class="img-responsive">
+                    </div>
+                    <br />
+
+                    <div class="twentytwenty-container">
+                        <img src="images/emissive-participating-media/cbox_vol_mats_fire_raw50_se10.png" alt="temp_scale_raw = 50" class="img-responsive">
+                        <img src="images/emissive-participating-media/cbox_vol_mats_fire_blue_raw1000_se10.png" alt="temp_scale_raw = 1000" class="img-responsive">
+                    </div>
+                    <br />
+
+                    <p>
+                        <strong>Volpath Ems</strong><br />
+                        I validate <code>volpath_ems.cpp</code> by comparing its renders to the ones from <code>volpath_mats.cpp</code>, as this
+                        integrator was validated by comparing it to other renderers (except for the emissive media part). The results match (except that
+                        the mats integrator has more noise) until
+                        I start adding emissive media to the scene, at which point <code>volpath_ems.cpp</code> starts producing a lot of fireflies
+                        and is darker around the medium than <code>volpath_mats</code>. I assume this is due to an error when converting the
+                        pdf from medium index space to solid angle measure (as without emissive media, the integrators match) which results in
+                        wrong radiance values being added but I did not have enough time to find the issue.
+                    </p>
+                    <div class="twentytwenty-container">
+                        <img src="images/emissive-participating-media/cbox_vol_ems.png" alt="Ems" class="img-responsive">
+                        <img src="images/emissive-participating-media/cbox_vol_mats.png" alt="Mats" class="img-responsive">
+                    </div>
+                    <br />
+
+                    <div class="twentytwenty-container">
+                        <img src="images/emissive-participating-media/cbox_vol_ems_multiple_lights.png" alt="Ems Multiple Lights" class="img-responsive">
+                        <img src="images/emissive-participating-media/cbox_vol_mats_multiple_lights.png" alt="Mats Multiple Lights" class="img-responsive">
+                    </div>
+                    <br />
+
+                    <div class="twentytwenty-container">
+                        <img src="images/emissive-participating-media/cbox_vol_ems_fire_raw50_se100.png" alt="Ems" class="img-responsive">
+                        <img src="images/emissive-participating-media/cbox_vol_mats_fire_raw50_se100.png" alt="Mats" class="img-responsive">
+                    </div>
+                    <br />
+
+
+                    <p>
+                        <strong>3D discrete probability distribution</strong><br />
+                        As it is hard to visualize a 3D distribution, I compare the computed density (i.e. normalized luminance) to the sampled density (the visualization
+                        is done in the same way as for the environment emitter) for a couple
+                        of fixed z values (where z is the z-index in the voxel grid). The code for creating the images used here can be found
+                        in the <code>precompute()</code> function of <code>volumegrid.cpp</code>.
+                    </p>
+
+                    <div class="twentytwenty-container">
+                        <img src="images/emissive-participating-media/luminanceMap1.png" alt="Computed" class="img-responsive">
+                        <img src="images/emissive-participating-media/luminanceSampleMap1.png" alt="Sampled" class="img-responsive">
+                    </div>
+                    <br />
+                    <div class="twentytwenty-container">
+                        <img src="images/emissive-participating-media/luminanceMap2.png" alt="Computed" class="img-responsive">
+                        <img src="images/emissive-participating-media/luminanceSampleMap2.png" alt="Sampled" class="img-responsive">
+                    </div>
+                    <br />
+                    <div class="twentytwenty-container">
+                        <img src="images/emissive-participating-media/luminanceMap3.png" alt="Computed" class="img-responsive">
+                        <img src="images/emissive-participating-media/luminanceSampleMap3.png" alt="Sampled" class="img-responsive">
+                    </div>
+                    <br />
+                    <br />
+                    <!-- MAIN CONTENT ABOVE -->
+                </div>
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Michael Siebenmann &amp; Marc Matter, 2023</div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="assets/demo/chart-area-demo.js"></script>
+    <script src="assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+            crossorigin="anonymous"></script>
+    <script src="js/datatables-simple-demo.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="./resources/bootstrap.min.js"></script>
+    <script src="./resources/jquery.event.move.js"></script>
+    <script src="./resources/jquery.twentytwenty.js"></script>
+
+    <!-- TODO find where to get this file? -->
+    <!--<script src="CG%202022_textures-Dateien/offcanvas.js"></script> -->
+    <script>
+        $(window).load(function () { $(".twentytwenty-container").twentytwenty({ default_offset_pct: 0.5 }); });
+    </script>
+
+</body>
+
+</html>

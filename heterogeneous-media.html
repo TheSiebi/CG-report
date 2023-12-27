@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" class="fontawesome-i2svg-active fontawesome-i2svg-complete">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>ACG23 Report</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="./resources/offcanvas.css" rel="stylesheet">
+    <link href="./resources/twentytwenty.css" rel="stylesheet" type="text/css" />
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+        });
+    </script>
+    <style>
+        .image-container {
+            display: flex; /* Use "inline-block" if you prefer another layout */
+        }
+
+            .image-container div {
+                margin-right: 20px; /* Adjust margin as needed to create space between images */
+            }
+    </style>
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+</head>
+
+<body class="sb-nav-fixed" data-new-gr-c-s-check-loaded="8.909.0" data-gr-ext-installed="">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="index.html">ACG 2023</a>
+
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
+            <svg class="svg-inline--fa fa-bars" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars"
+                 role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                <path fill="currentColor"
+                      d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z">
+                </path>
+            </svg><!-- <i class="fas fa-bars"></i> Font Awesome fontawesome.com -->
+        </button>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Heterogeneous Participating Media</div>
+                        <a class="nav-link" href="#homogeneous medium">Homogeneous Participating Media</a>
+                        <a class="nav-link" href="#heterogeneous medium">Heterogeneous Participating Media</a>
+                        <a class="nav-link" href="index.html">
+                            <div class="sb-nav-link-icon">
+                                <svg class="svg-inline--fa fa-circle-arrow-left"
+                                     aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-arrow-left"
+                                     role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                                     data-fa-i2svg="">
+                                    <path fill="currentColor"
+                                          d="M256 0C114.6 0 0 114.6 0 256c0 141.4 114.6 256 256 256s256-114.6 256-256C512 114.6 397.4 0 256 0zM384 288H205.3l49.38 49.38c12.5 12.5 12.5 32.75 0 45.25s-32.75 12.5-45.25 0L105.4 278.6C97.4 270.7 96 260.9 96 256c0-4.883 1.391-14.66 9.398-22.65l103.1-103.1c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L205.3 224H384c17.69 0 32 14.33 32 32S401.7 288 384 288z">
+                                    </path>
+                                </svg><!-- <i class="fas fa-arrow-circle-left"></i> Font Awesome fontawesome.com -->
+                            </div>
+                            Back
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+
+                    <!-- MAIN CONTENT BELOW -->
+                    <h2 id="heterogeneous-participating-media-30pt-">Heterogeneous Participating Media (30pts) </h2>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">Marc Matter</li>
+                    </ol>
+                    <h3 id="homogeneous medium">Homogeneous Medium</h3>
+                    <h4 id="implementation"> Implementation </h4>
+                    <p><strong>Added files: </strong></p>
+                    <ul>
+                        <li><code>medium.h</code></li>
+                        <li><code>medium.cpp</code></li>
+                        <li><code>homogeneous.cpp</code></li>
+                        <li><code>volpath_mats.cpp</code></li>
+                    </ul>
+                    <p>
+                        For the implementation of media, I closely followed the approach described in PBRv3. For this, I first had to add an interface <code>medium.h</code> that
+                        all media have to be a subclass of. This interface specifies all methods a medium implementation has to offer, the most important ones being
+                        <code>Sample()</code> and <code>Tr()</code>, where the first one is responsible for sampling the free path inside a medium and returning an importance weight and
+                        the second one to compute the transmittance between two points inside the medium. <br />
+                        Both methods use the formulas described in the lecture but additionally support spectrally varying extinction coefficients, by uniformly sampling the wavelength to use
+                        for the distance sampling.
+                    </p>
+
+                    <p>
+                        By adding a <code>Medium</code> member to the ray, I ensure that the ray can keep track of the medium it is currently inside of. Its <code>Medium</code> member
+                        gets initially set by the camera, to which one can attach a medium via the xml, and later gets updated whenever the ray intersects with a mesh.
+                        For this purpose, up to two mediums can be attached to a mesh in the xml, one for inside the mesh and one for outside the mesh. Then, if the ray
+                        continues to the inside of the mesh, <code>ray.medium</code> will be updated with the medium on the inside, otherwise with the medium on the outside of the mesh.
+                        Having medias as children of shapes also allows them to be placed anywhere inside the scene by just placing the respective mesh. If one would like to have a pure
+                        medium boundary, the bsdf for the mesh can be omitted, so the mesh no longer represents a light scattering surface.
+                    </p>
+
+                    <p>
+                        Lastly, I also had to add a new integrator <code>volpath_mats.cpp</code> that supports participating media. It is really similar to the <code>path_mats.cpp</code>
+                        integrator but additionally checks in each loop iteration, whether the ray is in a medium and if so, it samples a free path by calling the <code>Sample()</code>
+                        method from the medium. This will update the throughput by the returned importance weight and if a medium interaction is sampled, the integrator
+                        will sample the phase function for a new direction, otherwise it will handle the intersection with a light scattering surface the same way as
+                        <code>path_mats.cpp</code> with the additional change that it will skip over null bsdfs (i.e. pure medium boundaries).<br />
+                        I also added support for the environment map emitters that were implemented by Michael.
+                    </p>
+
+                    <p>
+                        Some other modifications to the existing code are additions of convenience methods and / or members to the <code>Intersection</code>, <code>common.cpp</code> and <code>scene.h</code>.
+                        Particularly for <code>scene.h</code>, I added an <code>IntersectTr()</code> method, that returns whether a ray intersecting with a light scattering surface
+                        and the transmittance up to that point.
+                    </p>
+
+                    <p>
+                        The xml syntax for specifying a medium is the following (it's similar for cameras, except that you can only specify one medium there):
+                        <code>
+                            <xmp>
+<mesh>
+    ...
+    <!-- Only add one medium to the mesh and set this boolean to true if one only wants a medium outside the mesh.
+         If omitted, the default value is false. -->
+    <!-- <boolean name="onlyOutsideMedium" value="true"/> -->
+    <!-- medium inside mesh, can be omitted in which case a vaccum is assumed -->
+    <medium type="homogeneous">
+        <!-- can be omitted, in which case an isotropic phase function will be instantiatet -->
+        <phase type="henyeygreenstein">
+            <float name="g" value="0" />
+        </phase>
+        <color name="sigma_a" value="1 1 1" />
+        <color name="sigma_s" value="2 2 2" />
+    </medium>
+    <!-- medium outside mesh, can be omitted in which case a vacuum is assumed -->
+    <medium type="homogeneous">
+        <phase type="henyeygreenstein">
+            <float name="g" value="0.8" />
+        </phase>
+        <color name="sigma_a" value="1 1 1" />
+        <color name="sigma_s" value="0.5 0.5 0.5" />
+    </medium>
+    ...
+</mesh>
+                            </xmp>
+                        </code>
+                    </p>
+
+                    <h4 id="validation">Validation</h4>
+                    <p>
+                        I validated my implementation by comparing with Mitsuba as well as varying some medium parameters.
+                        One of the meshes used is the <a href="https://graphics.stanford.edu/~mdfisher/Data/Meshes/bunny.obj">Stanford Bunny</a>.
+                        Since mitsuba uses a MIS integrator, I use a lot higher samples per pixels for my images and the
+                        noise generally looks worse. However, for some scenes, Mitsuba has a lot more fireflies than my implementation.
+                    </p>
+
+                    <p><strong>Stanford Bunny</strong></p>
+                    <div class="twentytwenty-container">
+                        <img src="images/participating-media/homogeneous/cbox_vol_mats_bunny_scattering.png" alt="Nori Bunny Scattering" class="img-responsive">
+                        <img src="images/participating-media/homogeneous/cbox_vol_mats_bunny_scattering_ref.png" alt="Mitsuba Bunny Scattering" class="img-responsive">
+                        <img src="images/participating-media/homogeneous/cbox_vol_mats_bunny_absorption.png" alt="Nori Bunny Absorption" class="img-responsive">
+                        <img src="images/participating-media/homogeneous/cbox_vol_mats_bunny_absorption_ref.png" alt="Mitsuba Bunny Absorption" class="img-responsive">
+                    </div>
+                    <br />
+
+                    <p><strong>Nested Media</strong></p>
+                    <div class="twentytwenty-container">
+                        <img src="images/participating-media/homogeneous/cbox_vol_mats_sphere_nested.png" alt="Nori Nested" class="img-responsive">
+                        <img src="images/participating-media/homogeneous/cbox_vol_mats_sphere_nested_ref.png" alt="Mitsuba Nested" class="img-responsive">
+                    </div>
+                    <br />
+
+                    <p><strong>Colored Spheres with and without dielectric bsdf</strong></p>
+                    <div class="twentytwenty-container">
+                        <img src="images/participating-media/homogeneous/cbox_vol_mats_spheres.png" alt="Nori Spheres" class="img-responsive">
+                        <img src="images/participating-media/homogeneous/cbox_vol_mats_spheres_ref.png" alt="Mitsuba Spheres" class="img-responsive">
+                        <img src="images/participating-media/homogeneous/cbox_vol_mats_spheres_dielectric.png" alt="Nori Spheres Dielectric" class="img-responsive">
+                        <img src="images/participating-media/homogeneous/cbox_vol_mats_spheres_dielectric_ref.png" alt="Mitsuba Spheres Dielectric" class="img-responsive">
+                    </div>
+                    <br />
+
+                    <p><strong>Additional Result (Attaching a medium to a camera)</strong></p>
+                    <div class="twentytwenty-container">
+                        <img src="images/participating-media/homogeneous/cbox_vol_mats_without_fog.png" alt="Nori no fog" class="img-responsive">
+                        <img src="images/participating-media/homogeneous/cbox_vol_mats_fog.png" alt="Nori with fog" class="img-responsive">
+                    </div>
+                    <br />
+
+
+                    <br />
+                    <br />
+                    <br />
+
+
+                    <h3 id="heterogeneous medium">Heterogeneous Medium</h3>
+                    <h4 id="implementation"> Implementation </h4>
+                    <p><strong>Added files: </strong></p>
+                    <ul>
+                        <li><code>heterogeneous.cpp</code></li>
+                        <li><code>volumegrid.h</code></li>
+                        <li><code>volumegrid.cpp</code></li>
+                    </ul>
+                    <p>
+                        For the heterogeneous medium, I closely followed the PBRv3 implementation again. This means that also the heterogeneous medium must implement the
+                        <code>medium.h </code> interface. Here, for the <code>Sample()</code> method, I use Delta Tracking as described in the lecture slides
+                        and for the <code>Tr()</code> method, I use Ratio Tracking. However, in the case of heterogeneous media, I do not allow for a spectrally varying extinction coefficient anymore
+                        (The absorption and scattering coefficient may still be spectrally varying though as long as their sum is uniform over all spectra).
+                    </p>
+
+                    <p>
+                        To model the spatially varying extinction coefficient of heterogeneous media, I decided to use the <a href="https://mitsuba.readthedocs.io/en/latest/src/generated/plugins_volumes.html">.vol</a> file format
+                        that is also used by Mitsuba. This is convenient as this format is relatively simple but I can easily obtain data as Mitsuba provides a .vdb to .vol file converter.
+                        To parse the .vol files, I implemented the <code>volumegrid.cpp</code> class. In the constructor, this class parses the .vol file specified in the xml. It offers a key method <code>Density()</code> that for a given point <b>p</b> returns the density of the extinction coefficient at <b>p</b>. The density gets
+                        trilinearly interpolated in case <b>p</b> doesn't lie exactly on the voxel grid. The return value of <code>Density()</code> is used by the Delta Tracking and Ratio Tracking algorithms to scale the baseline extinction
+                        coefficient passed to the medium in the xml. One key challenge here is that the point passed to the <code>Density()</code> method must be in the medium coordinate system. I solve this
+                        by first mapping the mesh that places the medium in the scene to a centered unit cube and then mapping this unit cube to the medium bounding box.
+                    </p>
+
+                    <p>
+                        Adding heterogeneous media to the scene can be done analogeously as for homogeneous media - attaching them as children of a mesh object or a camera. But this time, the
+                        mesh associated with the medium should be a centered unit cube that was placed in the scene by a series of translations, rotations and scalings.
+                        The integrator is exactly the same as for homogeneous media.
+                    </p>
+
+                    <p>
+                        The xml syntax for specifying a heterogeneous medium is almost the same as for a homogeneous one, but it additionally takes a filename as
+                        a parameter:
+                        <code>
+                            <xmp>
+<medium type="heterogeneous">
+    <phase type="henyeygreenstein">
+        <float name="g" value="0.8" />
+    </phase>
+    <color name="sigma_a" value="1 1 1" />
+    <color name="sigma_s" value="0.5 0.5 0.5" />
+    <string name="density_file" value="./volumes/bunny_cloud.vol" />
+</medium>
+                            </xmp>
+                        </code>
+                    </p>
+
+                    <h4 id="validation">Validation</h4>
+                    <p>
+                        I validated my implementation by comparing with Mitsuba as well as varying some medium parameters.
+                        I obtained the .vol files by using the <a href="https://github.com/mitsuba-renderer/mitsuba2-vdb-converter">converter</a>
+                        offered by mitsuba to convert vdb files which can for example be obtained from <a href="https://www.openvdb.org/download/">here</a>.
+                        Since mitsuba uses a MIS integrator, I use a lot higher samples per pixels for my images and the
+                        noise generally looks worse. However, for scenes with high(er) scattering, Mitsuba has a lot more fireflies than my implementation.
+                    </p>
+
+                    <p><strong>Bunny Cloud Scattering</strong></p>
+                    <div class="twentytwenty-container">
+                        <img src="images/participating-media/heterogeneous/cbox_vol_mats_bunny_sc12ab8.png" alt="Nori" class="img-responsive">
+                        <img src="images/participating-media/heterogeneous/cbox_vol_mats_bunny_sc12ab8_ref.png" alt="Mitsuba" class="img-responsive">
+                    </div>
+                    <br />
+
+                    <p><strong>Bunny Cloud Absorption</strong></p>
+                    <div class="twentytwenty-container">
+                        <img src="images/participating-media/heterogeneous/cbox_vol_mats_bunny_sc5ab15.png" alt="Nori" class="img-responsive">
+                        <img src="images/participating-media/heterogeneous/cbox_vol_mats_bunny_sc5ab15_ref.png" alt="Mitsuba" class="img-responsive">
+                    </div>
+                    <br />
+
+                    <p><strong>Additional Results ($\sigma_s=100$, $\sigma_a=10$ vs. $\sigma_s=150$, $\sigma_a=50$)</strong></p>
+                    <div class="twentytwenty-container">
+                        <img src="images/participating-media/heterogeneous/cbox_vol_mats_bunny_sc100ab10.png" alt="Nori" class="img-responsive">
+                        <img src="images/participating-media/heterogeneous/cbox_vol_mats_bunny_sc150ab50.png" alt="Nori" class="img-responsive">
+                    </div>
+                    <br />
+                    <!-- MAIN CONTENT ABOVE -->
+                </div>
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Michael Siebenmann &amp; Marc Matter, 2023</div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="assets/demo/chart-area-demo.js"></script>
+    <script src="assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+            crossorigin="anonymous"></script>
+    <script src="js/datatables-simple-demo.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="./resources/bootstrap.min.js"></script>
+    <script src="./resources/jquery.event.move.js"></script>
+    <script src="./resources/jquery.twentytwenty.js"></script>
+
+    <!-- TODO find where to get this file? -->
+    <!--<script src="CG%202022_textures-Dateien/offcanvas.js"></script> -->
+    <script>
+        $(window).load(function () { $(".twentytwenty-container").twentytwenty({ default_offset_pct: 0.5 }); });
+    </script>
+
+</body>
+
+</html>

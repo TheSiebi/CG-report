@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" class="fontawesome-i2svg-active fontawesome-i2svg-complete">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>ACG23 Report</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="./resources/offcanvas.css" rel="stylesheet">
+    <link href="./resources/twentytwenty.css" rel="stylesheet" type="text/css" />
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+        });
+    </script>
+    <style>
+        .image-container {
+            display: flex; /* Use "inline-block" if you prefer another layout */
+        }
+
+            .image-container div {
+                margin-right: 20px; /* Adjust margin as needed to create space between images */
+            }
+    </style>
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+</head>
+
+<body class="sb-nav-fixed" data-new-gr-c-s-check-loaded="8.909.0" data-gr-ext-installed="">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="index.html">ACG 2023</a>
+
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
+            <svg class="svg-inline--fa fa-bars" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars"
+                 role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                <path fill="currentColor"
+                      d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z">
+                </path>
+            </svg><!-- <i class="fas fa-bars"></i> Font Awesome fontawesome.com -->
+        </button>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Realistic Camera Model</div>
+                        <a class="nav-link" href="#implementation">Implementation</a>
+                        <a class="nav-link" href="#validation">Validation</a>
+                        <a class="nav-link" href="index.html">
+                            <div class="sb-nav-link-icon">
+                                <svg class="svg-inline--fa fa-circle-arrow-left"
+                                     aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-arrow-left"
+                                     role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                                     data-fa-i2svg="">
+                                    <path fill="currentColor"
+                                          d="M256 0C114.6 0 0 114.6 0 256c0 141.4 114.6 256 256 256s256-114.6 256-256C512 114.6 397.4 0 256 0zM384 288H205.3l49.38 49.38c12.5 12.5 12.5 32.75 0 45.25s-32.75 12.5-45.25 0L105.4 278.6C97.4 270.7 96 260.9 96 256c0-4.883 1.391-14.66 9.398-22.65l103.1-103.1c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L205.3 224H384c17.69 0 32 14.33 32 32S401.7 288 384 288z">
+                                    </path>
+                                </svg><!-- <i class="fas fa-arrow-circle-left"></i> Font Awesome fontawesome.com -->
+                            </div>
+                            Back
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+
+                    <!-- MAIN CONTENT BELOW -->
+                    <h2 id="spotlights-5-pts-">Realistic Camera Model (15 pts)</h2>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">Michael Siebenmann</li>
+                    </ol>
+                    <h3 id="implementation">Implementation</h3>
+                    <p><strong>Added files: </strong></p>
+                    <ul>
+                        <li><code>realistic_camera.cpp</code></li>
+                        <li><code>floatfile.cpp</code></li>
+                        <li><code>floatfile.h</code></li>
+                        <li><code>bounds.h</code></li>
+                    </ul>
+                    <p>
+                        This feature replaces the standard perspective pinhole camera with a more realistic camera model to simulate complex optical effects.
+                        My implementation very closely follows PBRTv3's implementation of a realistic camera, explained in section 6.4.
+                        The only notable difference is that PBRTv3 uses a sampling strategy based on Hammersley points for bounding the exit pupil (more on that later)
+                        whereas I simply use the <code>Independent</code> sampler that Nori comes with.
+                    </p>
+                    <p>
+                        As a first step, we need to load a lens description file which defines all lens elements through a radius, thickness, refraction coefficient
+                        and aperture radius.
+                        This is done in the <code>RealisticCamera</code> constructor and populates a vector of <code>LensElementInterface</code> structs, which also use
+                        units converted to meters, whereas the lens description files obtained from public <a href="https://gitlab.com/zhoub/pbrt-v3-scenes/-/tree/master/lenses?ref_type=heads">PBRTv3 scenes</a>
+                        use millimeters.
+                        For parsing and reading the floats from the file into a vector, I use <code>floatfile.cpp</code>, which is a only slightly adapted version from PBRTv3.
+                        Also in the constructor, the lens system is focused to the <code>focusDistance</code> specified by the user, using the thick lens approximation to compute
+                        how far the image film needs to be moved from the last lens element.
+                        Finally, in the constructor we also precompute bounds for the exit pupil. The exit pupil is the region of the back element of the lens system where
+                        rays which actually exit the lens system into the scene pass.
+                        By thus sampling the exit pupil instead of the full back element of the lens system, we drastically reduce the amount of wasted rays (rays not leaving
+                        lens system due to being blocked by the aperture stop or intersecting the lens system enclosure).
+                        Note that the bound we compute is an over-approximation, thus many rays will still end up not exiting the lens system.
+                        As I have to do quite a lot of computations with bounds in my code, I have adapted the <code>Bounds2f</code> class
+                        from the PBRTv3 source code (see <code>bounds.h</code>).
+                    </p>
+                    <p>
+                        Apart from these involved precomputations, the main part of our <code>RealisticCamera</code> is its <code>sampleRay</code> function, described in the following.
+                        First, we sample a point on the image film (which now has an actual size that can be set through <code>filmDiagonal</code>).
+                        Secondly, we sample a point on the exit pupil, using the precomputed exit pupil bounds and create a ray going from the film sample to the exit pupil sample.
+                        Next, we trace this ray through the lens system by calling <code>TraceLensesFromFilm</code>.
+                        If this function returns false, our ray was blocked and we return 0 for the weight of the ray.
+                        Otherwise, all that is left is to transform the ray from camera to world space and return the importance weight associated with the sampled ray.
+                    </p>
+
+                    <h3 id="validation">Validation</h3>
+                    <p>
+                        I validated my implementation by comparing with PBRTv3.
+                        In the first part of this validation, I will show comparisons with PBRTv3 using different lens systems (Fisheye, D-Gauss, Telephoto), but keeping all other parameters fixed.
+                        In the second part, I will keep the lens system fixed and vary the other parameters, namely focusDistance and apertureDiameter.
+                        Note that I have used higher sample counts than PBRT to roughly match their noise levels since PBRT importance samples sphere area emitters, 
+                        whereas from our Nori assignments we only uniformly sample sphere area emitters (for more details, see PBRTv3 section 14.2.2).
+                    </p>
+                    <h4 id="part-1">Part 1 - Lens Systems</h4>
+                    <p>
+                        The following images compare three lens systems while keeping all other parameters at fixed values, namely:
+                        <code>
+                            apertureDiameter = 6.08 mm,
+                            focusDistance = 5.0 m,
+                            filmDiagonal 70.0 mm
+                        </code>
+                    </p>
+                    <p>These images already showcase complex optical effects such as vignetting and lens distortion.</p>
+
+                    <p><strong>Muller 16mm/f4 155.9FOV fisheye lens</strong> (scaled to 10 mm from 100 mm)</p>
+                    <div class="twentytwenty-container">
+                        <img src=".\images\realistic-camera-model\bunnies-fisheye_pbrt.png" alt="PBRTv3" class="img-responsive">
+                        <img src=".\images\realistic-camera-model\bunnies-fisheye.png" alt="Mine" class="img-responsive">
+                    </div>
+                    <br />
+
+                    <p><strong>SIGLER Super achromate telephoto, EFL=254mm, F/5.6</strong> (scaled to 250 mm from 100 mm)</p>
+                    <div class="twentytwenty-container">
+                        <img src=".\images\realistic-camera-model\bunnies-telephoto_pbrt.png" alt="PBRTv3" class="img-responsive">
+                        <img src=".\images\realistic-camera-model\bunnies-telephoto.png" alt="Mine" class="img-responsive">
+                    </div>
+                    <br />
+
+                    <p><strong>D-GAUSS F/2 22deg HFOV</strong> (scaled to 50 mm from 100 mm)</p>
+                    <div class="twentytwenty-container">
+                        <img src=".\images\realistic-camera-model\bunnies-dgauss_pbrt.png" alt="PBRTv3" class="img-responsive">
+                        <img src=".\images\realistic-camera-model\bunnies-dgauss.png" alt="Mine" class="img-responsive">
+                    </div>
+                    <br />
+
+
+                    <h4 id="part-2">Part 2 - Camera Parameters</h4>
+                    <p>In this part, we only use the D-GAUSS F/2 22deg HFOV lens system and vary other camera-related parameters.</p>
+
+                    <p><strong>Aperture Diameter</strong></p>
+                    <p>
+                        These results nicely illustrate that closing the aperture results in a larger depth of field but a decrease in brightness.
+                        <code>filmDiagonal = 40 mm, focusDistance = 0.75 m</code>
+                    </p>
+                    <div class="twentytwenty-container">
+                        <img src=".\images\realistic-camera-model\bunnies-dgauss-aperture1_pbrt.png" alt="6.08mm PBRTv3" class="img-responsive">
+                        <img src=".\images\realistic-camera-model\bunnies-dgauss-aperture1.png" alt="6.08mm Mine" class="img-responsive">
+                        <img src=".\images\realistic-camera-model\bunnies-dgauss-aperture2_pbrt.png" alt="1.00mm PBRTv3" class="img-responsive">
+                        <img src=".\images\realistic-camera-model\bunnies-dgauss-aperture2.png" alt="1.00mm Mine" class="img-responsive">
+                    </div>
+                    <br />
+
+                    <p><strong>Focus Distance</strong></p>
+                    <p>
+                        These results illustrate that we can vary the depth of field also for the same aperture.
+                        <code>filmDiagonal = 40 mm, apertureDiameter = 6.08 mm</code>
+                    </p>
+                    <div class="twentytwenty-container">
+                        <img src=".\images\realistic-camera-model\bunnies-dgauss-focaldistance1_pbrt.png" alt="3.0m PBRTv3" class="img-responsive">
+                        <img src=".\images\realistic-camera-model\bunnies-dgauss-focaldistance1.png" alt="3.0m Mine" class="img-responsive">
+                        <img src=".\images\realistic-camera-model\bunnies-dgauss-focaldistance2_pbrt.png" alt="0.5m PBRTv3" class="img-responsive">
+                        <img src=".\images\realistic-camera-model\bunnies-dgauss-focaldistance2.png" alt="0.5m Mine" class="img-responsive">
+                    </div>
+                    <br />
+
+                    <p>
+                        Note that the parameter <code>filmDiagonal</code> was varied from <code>70 mm</code> in Part 1 to <code>40 mm</code> in Part 2.
+                        Therefore, changing this parameter was implicitly validated against PBRTv3 as well.
+                    </p>
+
+                    <!-- MAIN CONTENT ABOVE -->
+                </div>
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Michael Siebenmann &amp; Marc Matter, 2023</div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="assets/demo/chart-area-demo.js"></script>
+    <script src="assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+            crossorigin="anonymous"></script>
+    <script src="js/datatables-simple-demo.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="./resources/bootstrap.min.js"></script>
+    <script src="./resources/jquery.event.move.js"></script>
+    <script src="./resources/jquery.twentytwenty.js"></script>
+
+    <!-- TODO find where to get this file? -->
+    <!--<script src="CG%202022_textures-Dateien/offcanvas.js"></script> -->
+    <script>
+        $(window).load(function () { $(".twentytwenty-container").twentytwenty({ default_offset_pct: 0.5 }); });
+    </script>
+
+</body>
+
+</html>
